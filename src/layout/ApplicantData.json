@@ -1,0 +1,37 @@
+{
+  "name": "Adebimpe Adeoye",
+  "application_id": "2234",
+  "applicationStatus": [
+    {
+      "application_status": "Pending",
+      "activity": "Completed Application",
+      "details": "You have completed your applicaion and will receive a mail when there is an update",
+      "timestamp": "2 days ago"
+    },
+    {
+      "application_status": "Shortlisted",
+      "activity": "Shortlisted For Assessment",
+      "details": "You have passed the application stage and have been invited to take an assesment.",
+      "timestamp": "a day ago"
+    },
+    {
+      "application_status": "Invited",
+      "activity": "Invited For Interview",
+      "details": "You have completed your applicaion and will receive a mail when there is an update",
+      "timestamp": "2 days ago"
+    },
+
+    {
+      "application_status": "Rejected",
+      "activity": "Rejected Application",
+      "details": "After reviewing your assessment results, we are sorry to inform you that we will not be proceeding with your application. Thank you.",
+      "timestamp": "2 days ago"
+    },
+    {
+      "application_status": "Accepted",
+      "activity": "Accepted Application",
+      "details": "We are pleased to inform you that you have been selected for the AFEX TECH STARS. More details on this will be sent to you by mail. Congratulations.",
+      "timestamp": "2 days ago"
+    }
+  ]
+}
