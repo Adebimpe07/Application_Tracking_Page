@@ -1,3 +1,215 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Switzer", sans-serif;
+}
+/* Switzer */
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/JXG72O2TZZZ5GVUMRFHCQDLSBYPRIWXQ/ZP6MERMWLACGBGZHTVL3PGEM4LJZTZ57/O2INHB7RBA62NQZWIAP3RS5WRI4PR4T5.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/JXG72O2TZZZ5GVUMRFHCQDLSBYPRIWXQ/ZP6MERMWLACGBGZHTVL3PGEM4LJZTZ57/O2INHB7RBA62NQZWIAP3RS5WRI4PR4T5.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/JXG72O2TZZZ5GVUMRFHCQDLSBYPRIWXQ/ZP6MERMWLACGBGZHTVL3PGEM4LJZTZ57/O2INHB7RBA62NQZWIAP3RS5WRI4PR4T5.ttf")
+      format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/3VAGCWMQT2A2C2GK7F5FAHGUYKLKSXPK/SYFRQABIUPT55PTOJIEEV2YMJSVV6EYS/RIR2QY5RYWK7P7XPEQY25M7LKF37GJDV.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/3VAGCWMQT2A2C2GK7F5FAHGUYKLKSXPK/SYFRQABIUPT55PTOJIEEV2YMJSVV6EYS/RIR2QY5RYWK7P7XPEQY25M7LKF37GJDV.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/3VAGCWMQT2A2C2GK7F5FAHGUYKLKSXPK/SYFRQABIUPT55PTOJIEEV2YMJSVV6EYS/RIR2QY5RYWK7P7XPEQY25M7LKF37GJDV.ttf")
+      format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/EW5HJEX6O4L64XUWQA2XU7Q6BZ3B4JA4/ZWUP4SQYHHMMSS5LFHFFBX6DXL7C3DTU/H5EOHLIZH5K7IZK6SGYJI75L4KV6FUO7.ttf")
+      format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/4VXBC3FEORAU76DL5BGHFNI55RKWXZSX/G66T76FX64HG5CN7K5FPYPNZUZ73U2XV/VIBEJS7WAALPI7YO7IOVGRTLMVQJ5RTQ.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/4VXBC3FEORAU76DL5BGHFNI55RKWXZSX/G66T76FX64HG5CN7K5FPYPNZUZ73U2XV/VIBEJS7WAALPI7YO7IOVGRTLMVQJ5RTQ.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/4VXBC3FEORAU76DL5BGHFNI55RKWXZSX/G66T76FX64HG5CN7K5FPYPNZUZ73U2XV/VIBEJS7WAALPI7YO7IOVGRTLMVQJ5RTQ.ttf")
+      format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/BLNB4FAQFNK56DWWNF7PMGTCOTZHOEII/ST3WKSSDMBK2MIQQO3MAVYWLF4FTOLFV/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/XVUY2PHYBA6KMN4RMEMJPHQSTKCQ267G/UICOQA6KCSHFOSCPYDVVDNNCDKYFXHJB/O34WRFYO7JNWEBBA2LRV2XYRUSYXYDKH.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/XVUY2PHYBA6KMN4RMEMJPHQSTKCQ267G/UICOQA6KCSHFOSCPYDVVDNNCDKYFXHJB/O34WRFYO7JNWEBBA2LRV2XYRUSYXYDKH.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/XVUY2PHYBA6KMN4RMEMJPHQSTKCQ267G/UICOQA6KCSHFOSCPYDVVDNNCDKYFXHJB/O34WRFYO7JNWEBBA2LRV2XYRUSYXYDKH.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/OYB4CXKJQXKTNSLJMTDQOIVUL2V5EL7S/WYO2P7DQVV5RNXGMCUO2HL4RJP4VFUAS/6XPIMU23OJVRY676OG5YVJMWEHWICATX.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/QMRBNVYKDJEZ66DA22SPWH5EVVYACHCU/ZHMXHHA546NDNEHJN5RPZX5KISJY5CWF/C6VLICDGQWYKV6YT65TM5G3OVN4AOZBN.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/QMRBNVYKDJEZ66DA22SPWH5EVVYACHCU/ZHMXHHA546NDNEHJN5RPZX5KISJY5CWF/C6VLICDGQWYKV6YT65TM5G3OVN4AOZBN.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/QMRBNVYKDJEZ66DA22SPWH5EVVYACHCU/ZHMXHHA546NDNEHJN5RPZX5KISJY5CWF/C6VLICDGQWYKV6YT65TM5G3OVN4AOZBN.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/5SZVFDB7V52TI6ULVC6J3WQZQCIZVDV5/ODYPSTCUDMKSTYIPTV4CLQ7URIK7XYBJ/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/2UC2M25RQ2XRSGCBJRQ2G5SNXCROECQB/QJT3T33NN372363FJY5EO5D63GKDKLDK/IOAFMDAPNX3S6OL2GYQQJ2FFJIRSVB3N.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/2UC2M25RQ2XRSGCBJRQ2G5SNXCROECQB/QJT3T33NN372363FJY5EO5D63GKDKLDK/IOAFMDAPNX3S6OL2GYQQJ2FFJIRSVB3N.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/2UC2M25RQ2XRSGCBJRQ2G5SNXCROECQB/QJT3T33NN372363FJY5EO5D63GKDKLDK/IOAFMDAPNX3S6OL2GYQQJ2FFJIRSVB3N.ttf")
+      format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/HBNTRIISA5MEXGL5WPYI7CV2HIWTDV3Q/YDPDINVT673XLXNSTMLG4JNCZZMVVNPN/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/LVPXCMXCWY3V7PSXRMGRQUJDAS2DT47E/BPEVRT2HG7PPVVUS7A67MZQQZW6LR6A5/A7AS3UPAGLC7MDVC67SBNTE5FGF2Z2RG.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/LVPXCMXCWY3V7PSXRMGRQUJDAS2DT47E/BPEVRT2HG7PPVVUS7A67MZQQZW6LR6A5/A7AS3UPAGLC7MDVC67SBNTE5FGF2Z2RG.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/LVPXCMXCWY3V7PSXRMGRQUJDAS2DT47E/BPEVRT2HG7PPVVUS7A67MZQQZW6LR6A5/A7AS3UPAGLC7MDVC67SBNTE5FGF2Z2RG.ttf")
+      format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/ZME55SZ3XN6FJ6WZ26BVFLFSAZ5I2VWW/YETVURK7HXO34ARWAMVG6MSPWALMBOUD/SMQAIKPHV4D6DU77XSDVYN543XEEYX6R.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/ZME55SZ3XN6FJ6WZ26BVFLFSAZ5I2VWW/YETVURK7HXO34ARWAMVG6MSPWALMBOUD/SMQAIKPHV4D6DU77XSDVYN543XEEYX6R.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/ZME55SZ3XN6FJ6WZ26BVFLFSAZ5I2VWW/YETVURK7HXO34ARWAMVG6MSPWALMBOUD/SMQAIKPHV4D6DU77XSDVYN543XEEYX6R.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/AGVRET5QOXLLPCSORPLO44GJZRG35CBJ/AYMVXN4GPC7UMERGPHSKTQ4F226GXMHG/LBVFQZO23LFQX5ZQMIZGDF6ODT2YI7T2.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/AGVRET5QOXLLPCSORPLO44GJZRG35CBJ/AYMVXN4GPC7UMERGPHSKTQ4F226GXMHG/LBVFQZO23LFQX5ZQMIZGDF6ODT2YI7T2.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/AGVRET5QOXLLPCSORPLO44GJZRG35CBJ/AYMVXN4GPC7UMERGPHSKTQ4F226GXMHG/LBVFQZO23LFQX5ZQMIZGDF6ODT2YI7T2.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/A54N3N7J5AY6YOPYJKLHF5VH7G7HSSUN/ERWIWIB434FMFHQFSSBD233EP3C62HOI/TOHQHMLIEIPKVF2JPM6SVKXFYGO5G2TJ.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/A54N3N7J5AY6YOPYJKLHF5VH7G7HSSUN/ERWIWIB434FMFHQFSSBD233EP3C62HOI/TOHQHMLIEIPKVF2JPM6SVKXFYGO5G2TJ.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/A54N3N7J5AY6YOPYJKLHF5VH7G7HSSUN/ERWIWIB434FMFHQFSSBD233EP3C62HOI/TOHQHMLIEIPKVF2JPM6SVKXFYGO5G2TJ.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("//cdn.fontshare.com/wf/FQHNKZEV35SAMFWVFCFSORJXUNHNILL4/X4YCR4COAQTK5XB6JCDDBS7Q33AQWUAE/J7XVDQ2IJENINPUAVBDJNH3VEXVDSPQQ.woff2")
+      format("woff2"),
+    url("//cdn.fontshare.com/wf/FQHNKZEV35SAMFWVFCFSORJXUNHNILL4/X4YCR4COAQTK5XB6JCDDBS7Q33AQWUAE/J7XVDQ2IJENINPUAVBDJNH3VEXVDSPQQ.woff")
+      format("woff"),
+    url("//cdn.fontshare.com/wf/FQHNKZEV35SAMFWVFCFSORJXUNHNILL4/X4YCR4COAQTK5XB6JCDDBS7Q33AQWUAE/J7XVDQ2IJENINPUAVBDJNH3VEXVDSPQQ.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
