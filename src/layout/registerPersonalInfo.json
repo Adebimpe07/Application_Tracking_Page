@@ -1,0 +1,51 @@
+[
+    {
+      "label": "First Name",
+      "name": "first_name",
+      "placeholder": "Dotun"
+    },
+    {
+      "label": "Last Name",
+      "name": "last_name",
+      "placeholder": "Adebimpe"
+    },
+    {
+      "label": "Email",
+      "name": "email",
+      "placeholder": "dotunadebimpe@gmail.com"
+    },
+    {
+      "label": "Phone Number",
+      "name": "phone_number",
+      "placeholder": "07069138813"
+    },
+    {
+      "label": "Date of Birth",
+      "name": "date_of_birth"
+    },
+    {
+      "label": "Gender",
+      "name": "gender",
+      "placeholder": "Choose one"
+    },
+    {
+      "label": "Address",
+      "name": "address"
+    },
+    {
+      "label": "City",
+      "name": "city"
+    },
+    {
+      "label": "State",
+      "name": "state"
+    },
+    {
+      "label": "Country",
+      "name": "country"
+    },
+    {
+      "label": "Marital Status",
+      "name": "marital_status"
+    }
+  ]

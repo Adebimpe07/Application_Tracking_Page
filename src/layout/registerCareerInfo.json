@@ -1,0 +1,53 @@
+[
+  {
+    "label": "Highest Qualification",
+    "name": "highest_qualification"
+  },
+  {
+    "label": "Years of Expereince",
+    "name": "years_of_expereince"
+  },
+  {
+    "label": "Last Company Worked",
+    "name": "last_company_worked"
+  },
+  {
+    "label": "Last Position",
+    "name": "last_position"
+  },
+  {
+    "label": "School Attended",
+    "name": "school_attended"
+  },
+  {
+    "label": "Course of Study",
+    "name": "course_of_study"
+  },
+  {
+    "label": "Graduation Grade",
+    "name": "graduation_grade"
+  },
+  {
+    "label": "Resume or CV",
+    "name": "resume_or_cv",
+    "placeholder": "choose file"
+  },
+  {
+    "label": "Cover Letter",
+    "name": "cover_letter",
+    "placeholder": "choose file"
+  },
+  {
+    "label": "Other Attachment",
+    "name": "other_attachment",
+    "placeholder": "choose file"
+  },
+  {
+    "label": "Completed NYSC ?",
+    "name": "completed_nysc?"
+  },
+  {
+    "label": "Are You Willing To Relocate",
+    "name": "are_you_willing_to_relocate"
+  }
+]
