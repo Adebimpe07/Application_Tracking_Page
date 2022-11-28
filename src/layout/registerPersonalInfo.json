@@ -2,22 +2,22 @@
     {
       "label": "First Name",
       "name": "first_name",
-      "placeholder": "Dotun"
+      "placeholder": "first name"
     },
     {
       "label": "Last Name",
       "name": "last_name",
-      "placeholder": "Adebimpe"
+      "placeholder": "last name"
     },
     {
       "label": "Email",
       "name": "email",
-      "placeholder": "dotunadebimpe@gmail.com"
+      "placeholder": "example@gmail.com"
     },
     {
       "label": "Phone Number",
       "name": "phone_number",
-      "placeholder": "07069138813"
+      "placeholder": "08000000000"
     },
     {
       "label": "Date of Birth",

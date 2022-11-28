@@ -6,25 +6,29 @@ import { DatePicker } from "@mantine/dates";
 import { Select } from "@mantine/core";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
-import { Radio, FileInput } from "@mantine/core";
+import { Radio, FileInput, Textarea } from "@mantine/core";
 import Icon from "../../src/Asset/files.png";
 import { IconUpload } from "@tabler/icons";
 import Link from "next/link";
+import { useState } from "react";
 
 import registerTabs from "../../src/layout/registerTabs.json";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
-import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json"
-import registerCareerInfo from "../../src/layout/registerCareerInfo.json"
+import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
+import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
 
+type props = {
+  resume: File | null,
+  others: File | null
+}
 
-
-
-const Preview = () => {
+const Preview = ({resume, others} : props) => {
   const router = useRouter();
+
 
   const { asPath } = useRouter();
 
-  const presentRoute =  asPath.replace("/register", "");
+  const presentRoute = asPath.replace("/register", "");
 
   const form = useRegisterFormContext();
 
@@ -59,11 +63,11 @@ const Preview = () => {
     }
   };
 
+
   return (
     <form
-      className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12"
+      className="bg-[#E5E5E5] md:flex md:m-0 flex-col pt-12"
       onSubmit={form.onSubmit(handleSubmit, handleError)}
-            
     >
       <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
         <div className="md:flex md:gap-[49px] md:items-center hidden">
@@ -81,7 +85,7 @@ const Preview = () => {
               ></div>
               <p
                 key={item}
-                className="m-0 text-base font-medium text-[#252735] lg:pt-5 pt-1"
+                className="m-0 text-base font-medium text-[#252735] md:pt-5 pt-1"
               >
                 {item}
               </p>
@@ -135,7 +139,7 @@ const Preview = () => {
           </div>
           <form
             onSubmit={form.onSubmit(handleSubmit, handleError)}
-            style={{ display: "flex", flexDirection: "column", gap: "48px" }}
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3
               style={{
@@ -148,11 +152,18 @@ const Preview = () => {
             >
               Personal Information
             </h3>
-            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
+            <div className="md:grid md:grid-cols-2 md:w-full md:gap-x-16 md:gap-y-2 block w-full md:justify-items-start">
               {registerPersonalInfo.map(({ label, name, placeholder }) =>
                 name === "date_of_birth" ? (
                   <DatePicker
                     key={name}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0 ",
+                      root: "md:!flex md:flex-col !items-center md:gap-4",
+                      label: "md:w-[100%]",
+                    }}
                     label={label}
                     {...form.getInputProps(name)}
                     withAsterisk
@@ -160,6 +171,15 @@ const Preview = () => {
                 ) : name === "gender" ? (
                   <Select
                     label={label}
+                    readOnly
+                    defaultValue={label}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0 ",
+                      root: "md:!flex md:flex-col !items-center md:gap-4",
+                      label: "md:w-[100%]",
+                    }}
                     key={name}
                     placeholder={placeholder}
                     {...form.getInputProps(name)}
@@ -172,6 +192,13 @@ const Preview = () => {
                   <TextInput
                     withAsterisk
                     key={name}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center md:gap-4",
+                      label: "md:w-[100%]",
+                    }}
                     label={label}
                     {...form.getInputProps(name)}
                     placeholder={placeholder}
@@ -189,12 +216,19 @@ const Preview = () => {
             >
               Career Summary
             </h3>
-            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
+            <div className="md:grid md:grid-cols-2 md:w-full md:gap-x-16 md:gap-y-2 block w-full md:justify-items-start">
               {registerCareerInfo.map(({ label, name, ...data }) =>
-                name === "completed_nysc?" ? (
+                name === "completed_nysc" ? (
                   <Radio.Group
                     key={name}
                     label={label}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
                     {...form.getInputProps(name)}
                     data={[
                       { value: "yes", label: "Yes" },
@@ -209,6 +243,13 @@ const Preview = () => {
                   <Radio.Group
                     label={label}
                     key={name}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
                     {...form.getInputProps(name)}
                     data={[
                       { value: "yes", label: "Yes" },
@@ -219,52 +260,60 @@ const Preview = () => {
                     <Radio value="yes" label="Yes" />
                     <Radio value="no" label="No" />
                   </Radio.Group>
+                ) : name === "cover_letter" ? (
+                  <Textarea
+                    label={label}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
+                    placeholder={data?.placeholder ?? ""}
+                    key={name}
+                    {...form.getInputProps(name)}
+                    withAsterisk={true}
+                  />
                 ) : name === "resume_or_cv" ? (
                   <FileInput
+                  value={resume}
                     label={label}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center md:gap-2 ",
+                      label: "md:w-[100%]",
+                    }}
                     placeholder={data?.placeholder || ""}
-                    icon={
-                      <img
-                        src={Icon.src}
-                        className="w-6"
-                        key={name}
-                        {...form.getInputProps(name)}
-                        withAsterisk={true}
-                      />
-                    }
-                  />
-                ) : name === "cover_letter" ? (
-                  <FileInput
-                    label={label}
-                    placeholder={data?.placeholder ?? ""}
-                    icon={
-                      <img
-                        src={Icon.src}
-                        className="w-6"
-                        key={name}
-                        {...form.getInputProps(name)}
-                        withAsterisk={true}
-                      />
-                    }
                   />
                 ) : name === "other_attachment" ? (
                   <FileInput
+                  value={others}
                     label={label}
+                    disabled
                     placeholder={data?.placeholder}
-                    icon={
-                      <img
-                        src={Icon.src}
-                        className="w-6"
-                        key={name}
-                        {...form.getInputProps(name)}
-                        withAsterisk={true}
-                      />
-                    }
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center  md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
                   />
                 ) : name === "highest_qualification" ? (
                   <Select
                     label={label}
+                    readOnly
+                    defaultValue={label}
                     key={name}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white] !text-[black] !opacity-100 !p-0 ",
+                      root: "md:!flex md:flex-col !items-center  md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
                     placeholder={data?.placeholder}
                     {...form.getInputProps(name)}
                     withAsterisk={true}
@@ -280,6 +329,13 @@ const Preview = () => {
                     label={label}
                     {...form.getInputProps(name)}
                     id={name}
+                    disabled
+                    classNames={{
+                      disabled:
+                        "!border-0 !bg-[white]  !text-[black] !opacity-100 !p-0",
+                      root: "md:!flex md:flex-col !items-center  md:gap-2",
+                      label: "md:w-[100%]",
+                    }}
                   />
                 )
               )}
