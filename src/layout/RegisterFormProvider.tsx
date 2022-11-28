@@ -24,7 +24,7 @@ interface RegisterForm {
   resume_or_cv: string;
   cover_letter: string;
   other_attachment: string;
-  "completed_nysc?": string;
+  completed_nysc: string;
   are_you_willing_to_relocate: string;
 }
 
@@ -61,15 +61,18 @@ export function RegisterFormProvider({ children }: IRegisterFormProvider) {
       resume_or_cv: "",
       cover_letter: "",
       other_attachment: "",
-      "completed_nysc?": "",
+      completed_nysc: "",
       are_you_willing_to_relocate: "",
     },
     validate: yupResolver(Yup.object().shape({
       first_name: Yup.string().min(2, "Name must have at least 2 letters").required(),
       last_name: Yup.string().min(2, "Name must have at least 2 letters").required(),
       email: Yup.string().email().required("Invalid email").required(),
-      phone_number: Yup.string().matches(/^[0-9]*$/, "Invalid Phone Number").min(11).required()
+      phone_number: Yup.string().matches(/^[0-9]*$/, "Invalid Phone Number").min(11).required(),
+      // cover_letter: Yup.string().min(400, "Cover letter must have at least 400 characters").required()
+      
     }))
+    
     
     // {
     //   first_name: (value) =>

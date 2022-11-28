@@ -4,7 +4,7 @@
     "name": "highest_qualification"
   },
   {
-    "label": "Years of Expereince",
+    "label": "Years of Experience",
     "name": "years_of_expereince"
   },
   {
@@ -30,12 +30,12 @@
   {
     "label": "Resume or CV",
     "name": "resume_or_cv",
-    "placeholder": "choose file"
+    "placeholder": "choose file (.doc/.docx/.pdf)"
   },
   {
     "label": "Cover Letter",
     "name": "cover_letter",
-    "placeholder": "choose file"
+    "placeholder": "Write your cover letter"
   },
   {
     "label": "Other Attachment",
@@ -43,8 +43,8 @@
     "placeholder": "choose file"
   },
   {
-    "label": "Completed NYSC ?",
-    "name": "completed_nysc?"
+    "label": "Completed NYSC",
+    "name": "completed_nysc"
   },
   {
     "label": "Are You Willing To Relocate",

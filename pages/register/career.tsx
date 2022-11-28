@@ -1,5 +1,5 @@
 import { TextInput } from "@mantine/core";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { showNotification } from "@mantine/notifications";
 import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
@@ -7,16 +7,25 @@ import { Radio, FileInput } from "@mantine/core";
 import Icon from "../../src/Asset/files.png";
 import { IconUpload } from "@tabler/icons";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
+import { Textarea } from "@mantine/core";
 
-import registerTabs from "../../src/layout/registerTabs.json"
-import registerCareerInfo from "../../src/layout/registerCareerInfo.json"
+import registerTabs from "../../src/layout/registerTabs.json";
+import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
 
-const Career = () => {
+type props = {
+  setOthers: React.SetStateAction<File | null>,
+  setResume: React.SetStateAction<File | null>,
+  resume: File | null,
+  others: File | null
+}
+
+const Career = ({setOthers, setResume, resume, others}: props) => {
   const router = useRouter();
+  const [err, setErr] = useState(false);
 
   const { asPath } = useRouter();
 
-  const presentRoute =  asPath.replace("/register", "");
+  const presentRoute = asPath.replace("/register", "");
   // console.log(presentRoute);
 
   const form = useRegisterFormContext();
@@ -50,6 +59,8 @@ const Career = () => {
       showNotification({ message: "Please fill name field", color: "red" });
     }
   };
+
+  const textRef = useRef();
 
   return (
     <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12">
@@ -125,7 +136,7 @@ const Career = () => {
             </h3>
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
               {registerCareerInfo.map(({ label, name, ...data }) =>
-                name === "completed_nysc?" ? (
+                name === "completed_nysc" ? (
                   <Radio.Group
                     key={name}
                     label={label}
@@ -156,6 +167,8 @@ const Career = () => {
                 ) : name === "resume_or_cv" ? (
                   <FileInput
                     label={label}
+                    value={resume}
+                    onChange={setResume}
                     placeholder={data?.placeholder || ""}
                     icon={
                       <img
@@ -163,27 +176,31 @@ const Career = () => {
                         className="w-6"
                         key={name}
                         {...form.getInputProps(name)}
-                        withAsterisk={true}
                       />
                     }
+                    withAsterisk={true}
                   />
                 ) : name === "cover_letter" ? (
-                  <FileInput
-                    label={label}
-                    placeholder={data?.placeholder ?? ""}
-                    icon={
-                      <img
-                        src={Icon.src}
-                        className="w-6"
-                        key={name}
-                        {...form.getInputProps(name)}
-                        withAsterisk={true}
-                      />
-                    }
-                  />
+                  <div>
+                    <Textarea
+                      ref={textRef}
+                      label={label}
+                      placeholder={data?.placeholder ?? ""}
+                      key={name}
+                      {...form.getInputProps(name)}
+                      withAsterisk={true}
+                    />
+                    {err && (
+                      <small className="text-[red]">
+                        cover letter must be at least 400 characters
+                      </small>
+                    )}
+                  </div>
                 ) : name === "other_attachment" ? (
                   <FileInput
                     label={label}
+                    value={others}
+                    onChange={setOthers}
                     placeholder={data?.placeholder}
                     icon={
                       <img
@@ -220,9 +237,11 @@ const Career = () => {
             </div>
 
             <button
-            type="button"
+              type="button"
               onClick={() => {
-                form.validate().hasErrors ? null : router.push("/register/preview");
+                textRef.current.value.length < 400 && !form.validate().hasErrors
+                  ? setErr(true)
+                  : router.push("/register/preview");
               }}
               style={{
                 color: "#FFFFFF",
