@@ -51,7 +51,7 @@ const IndexPage = () => {
   };
 
   return (
-    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12">
+    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12 overflow-auto">
       <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
         <div className="md:flex md:gap-[49px] md:items-center hidden">
           {registerTabs.map((item, idx) => (

@@ -11,15 +11,18 @@ import Icon from "../../src/Asset/files.png";
 import { IconUpload } from "@tabler/icons";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios"
 
 import registerTabs from "../../src/layout/registerTabs.json";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
 import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
 import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
+import moment from "moment";
+import ApplicationModal from "../../src/component/applicationModal";
 
 type props = {
-  resume: File | null;
-  others: File | null;
+  resume: File;
+  others: File;
 };
 
 const Preview = ({ resume, others }: props) => {
@@ -62,18 +65,55 @@ const Preview = ({ resume, others }: props) => {
     }
   };
 
-  const handleSubmitform = (e) => {
+  const handleSubmitform = async (e: {preventDefault: () => void}) => {
     e.preventDefault()
-    let formData = new FormData();
+    const formData = new FormData();
+    const myHeaders = new Headers()
 
-    formData.append("resume_or_cv", resume, resume?.name)
+    myHeaders.append("api-key", "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW")
+    myHeaders.append("request-ts", "1667549939702")
+    myHeaders.append("hash-key", "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba")
+
+    formData.append("resume", resume, resume?.name)
     formData.append("other_attachment", others, others?.name)
-    console.log({...formData, ...form.values})
+    formData.append("cover_letter", form.values.cover_letter)
+    formData.append("first_name", form.values.first_name)
+    formData.append("last_name", form.values.last_name)
+    formData.append("email", form.values.email)
+    formData.append("phone_number", form.values.phone_number)
+    formData.append("gender", form.values.gender)
+    formData.append("date_of_birth", moment(form.values.date_of_birth).format('YYYY-MM-DD'))
+    formData.append("country_of_origin", form.values.country)
+    formData.append("current_location", form.values.state)
+    formData.append("qualification", form.values.highest_qualification)
+    formData.append("graduation_school", form.values.school_attended)
+    formData.append("course_of_study", form.values.course_of_study)
+    formData.append("graduation_grade", form.values.graduation_grade)
+    formData.append("years_of_experience", form.values.years_of_expereince)
+    formData.append("last_company_worked", form.values.last_company_worked)
+    formData.append("last_position", form.values.last_position)
+    formData.append("is_willing_to_relocate", form.values.are_you_willing_to_relocate)
+    formData.append("is_completed_NYSC", form.values.completed_nysc)
+    
+    console.log([...formData]);
+
+    try {
+      const res = await fetch('https://aptbk.afexats.com/api/applications/1/apply', {
+        method: 'post',
+        headers: myHeaders,
+        body: formData
+      })
+      const data = await res.json();
+      console.log(data)
+    } catch(error){
+      console.log(error);
+    }
+
   };
 
   return (
     <form
-      className="bg-[#E5E5E5] md:flex md:m-0 flex-col pt-12"
+      className="bg-[#E5E5E5] md:flex md:m-0 flex-col pt-12 overflow-auto"
       onSubmit={form.onSubmit(handleSubmit, handleError)}
     >
       <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
@@ -364,6 +404,7 @@ const Preview = ({ resume, others }: props) => {
             >
               Submit
             </button>
+            {/* <ApplicationModal/> */}
           </form>
         </div>
       </section>

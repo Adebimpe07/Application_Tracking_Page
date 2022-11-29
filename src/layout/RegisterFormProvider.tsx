@@ -7,7 +7,7 @@ interface RegisterForm {
   last_name: string;
   email: string;
   phone_number: string;
-  date_of_birth: Date;
+  date_of_birth: string;
   gender: string;
   city: string;
   address: string;
@@ -42,7 +42,7 @@ export function RegisterFormProvider({ children }: IRegisterFormProvider) {
       last_name: "",
       email: "",
       phone_number: "",
-      date_of_birth: new Date(),
+      date_of_birth: new Date().toISOString(),
       gender: "",
       city: "",
       address: "",
