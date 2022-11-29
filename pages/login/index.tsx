@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../../src/Asset/afex_logo.png";
 import { useRouter } from "next/router";
+import { Button, TextInput } from "@mantine/core";
 
 const index = () => {
   const router = useRouter();
@@ -23,22 +24,22 @@ const index = () => {
           }}
           className="flex flex-col"
         >
-          <label htmlFor="applicant_id" className="my-6 text-sm">
-            Applicant ID
-          </label>
-
-          <input
-            id="applicant_id"
-            type="text"
+          <TextInput
+            label=" Applicant ID"
             placeholder="enter your application ID"
-            className="rounded-lg border border-[#D0D5DD] focus:text-gray-700 focus:bg-white focus:border-[#D0D5DD] focus:outline-none py-4 pl-4 mb-8"
+            // htmlFor="applicant_id"
+            classNames={{
+              label: "text-base",
+              input: "p-1 mt-1",
+              root: "my-6",
+            }}
           />
-          <button
+          <Button
             type="submit"
-            className="bg-[#A01B14] rounded-lg sm:py-4 py-2  px-[7rem] sm:px-[14.5rem] text-[#fff] text-base"
+            className="bg-[#A01B14] hover:bg-[#A01B14] rounded-lg  py-2  px-[7rem] sm:px-[14.5rem] text-[#fff] text-base"
           >
             Track{" "}
-          </button>
+          </Button>
         </form>
       </div>
     </div>
