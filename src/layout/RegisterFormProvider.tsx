@@ -21,9 +21,7 @@ interface RegisterForm {
   school_attended: string;
   course_of_study: string;
   graduation_grade: string;
-  resume_or_cv: string;
   cover_letter: string;
-  other_attachment: string;
   completed_nysc: string;
   are_you_willing_to_relocate: string;
 }
@@ -58,9 +56,7 @@ export function RegisterFormProvider({ children }: IRegisterFormProvider) {
       school_attended: "",
       course_of_study: "",
       graduation_grade: "",
-      resume_or_cv: "",
       cover_letter: "",
-      other_attachment: "",
       completed_nysc: "",
       are_you_willing_to_relocate: "",
     },

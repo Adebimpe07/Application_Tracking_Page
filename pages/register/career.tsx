@@ -177,7 +177,9 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                         key={name}
                         {...form.getInputProps(name)}
                       />
+                      
                     }
+                   
                     withAsterisk={true}
                   />
                 ) : name === "cover_letter" ? (
@@ -242,6 +244,8 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                 textRef.current.value.length < 400 && !form.validate().hasErrors
                   ? setErr(true)
                   : router.push("/register/preview");
+                // console.log({...form.values, resume_or_cv:resume, other_attachment:others
+                // })
               }}
               style={{
                 color: "#FFFFFF",

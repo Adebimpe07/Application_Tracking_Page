@@ -18,13 +18,12 @@ import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
 import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
 
 type props = {
-  resume: File | null,
-  others: File | null
-}
+  resume: File | null;
+  others: File | null;
+};
 
-const Preview = ({resume, others} : props) => {
+const Preview = ({ resume, others }: props) => {
   const router = useRouter();
-
 
   const { asPath } = useRouter();
 
@@ -63,6 +62,14 @@ const Preview = ({resume, others} : props) => {
     }
   };
 
+  const handleSubmitform = (e) => {
+    e.preventDefault()
+    let formData = new FormData();
+
+    formData.append("resume_or_cv", resume, resume?.name)
+    formData.append("other_attachment", others, others?.name)
+    console.log({...formData, ...form.values})
+  };
 
   return (
     <form
@@ -277,7 +284,7 @@ const Preview = ({resume, others} : props) => {
                   />
                 ) : name === "resume_or_cv" ? (
                   <FileInput
-                  value={resume}
+                    value={resume}
                     label={label}
                     disabled
                     classNames={{
@@ -290,7 +297,7 @@ const Preview = ({resume, others} : props) => {
                   />
                 ) : name === "other_attachment" ? (
                   <FileInput
-                  value={others}
+                    value={others}
                     label={label}
                     disabled
                     placeholder={data?.placeholder}
@@ -353,6 +360,7 @@ const Preview = ({resume, others} : props) => {
                 width: "100%",
                 cursor: "pointer",
               }}
+              onClick={(e)=>handleSubmitform(e)}
             >
               Submit
             </button>
