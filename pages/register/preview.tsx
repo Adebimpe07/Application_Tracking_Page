@@ -27,12 +27,15 @@ type props = {
 
 const Preview = ({ resume, others }: props) => {
   const router = useRouter();
+  const [isFetched, setIsFetched] = useState(false)
 
   const { asPath } = useRouter();
 
   const presentRoute = asPath.replace("/register", "");
 
   const form = useRegisterFormContext();
+  const [oopened, setOopened] = useState(false);
+
 
   const handleSubmit = (values: typeof form.values) => {
     console.log(values);
@@ -65,49 +68,56 @@ const Preview = ({ resume, others }: props) => {
     }
   };
 
+
+
   const handleSubmitform = async (e: {preventDefault: () => void}) => {
     e.preventDefault()
-    const formData = new FormData();
-    const myHeaders = new Headers()
-
-    myHeaders.append("api-key", "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW")
-    myHeaders.append("request-ts", "1667549939702")
-    myHeaders.append("hash-key", "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba")
-
-    formData.append("resume", resume, resume?.name)
-    formData.append("other_attachment", others, others?.name)
-    formData.append("cover_letter", form.values.cover_letter)
-    formData.append("first_name", form.values.first_name)
-    formData.append("last_name", form.values.last_name)
-    formData.append("email", form.values.email)
-    formData.append("phone_number", form.values.phone_number)
-    formData.append("gender", form.values.gender)
-    formData.append("date_of_birth", moment(form.values.date_of_birth).format('YYYY-MM-DD'))
-    formData.append("country_of_origin", form.values.country)
-    formData.append("current_location", form.values.state)
-    formData.append("qualification", form.values.highest_qualification)
-    formData.append("graduation_school", form.values.school_attended)
-    formData.append("course_of_study", form.values.course_of_study)
-    formData.append("graduation_grade", form.values.graduation_grade)
-    formData.append("years_of_experience", form.values.years_of_expereince)
-    formData.append("last_company_worked", form.values.last_company_worked)
-    formData.append("last_position", form.values.last_position)
-    formData.append("is_willing_to_relocate", form.values.are_you_willing_to_relocate)
-    formData.append("is_completed_NYSC", form.values.completed_nysc)
-    
-    console.log([...formData]);
-
-    try {
-      const res = await fetch('https://aptbk.afexats.com/api/applications/1/apply', {
-        method: 'post',
-        headers: myHeaders,
-        body: formData
-      })
-      const data = await res.json();
-      console.log(data)
-    } catch(error){
-      console.log(error);
+    if(resume && others) {
+      const formData = new FormData();
+      const myHeaders = new Headers()
+  
+      myHeaders.append("api-key", "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW")
+      myHeaders.append("request-ts", "1667549939702")
+      myHeaders.append("hash-key", "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba")
+  
+      formData.append("resume", resume, resume?.name)
+      formData.append("other_attachment", others, others?.name)
+      formData.append("cover_letter", form.values.cover_letter)
+      formData.append("first_name", form.values.first_name)
+      formData.append("last_name", form.values.last_name)
+      formData.append("email", form.values.email)
+      formData.append("phone_number", form.values.phone_number)
+      formData.append("gender", form.values.gender)
+      formData.append("date_of_birth", moment(form.values.date_of_birth).format('YYYY-MM-DD'))
+      formData.append("country_of_origin", form.values.country)
+      formData.append("current_location", form.values.state)
+      formData.append("qualification", form.values.highest_qualification)
+      formData.append("graduation_school", form.values.school_attended)
+      formData.append("course_of_study", form.values.course_of_study)
+      formData.append("graduation_grade", form.values.graduation_grade)
+      formData.append("years_of_experience", form.values.years_of_expereince)
+      formData.append("last_company_worked", form.values.last_company_worked)
+      formData.append("last_position", form.values.last_position)
+      formData.append("is_willing_to_relocate", form.values.are_you_willing_to_relocate)
+      formData.append("is_completed_NYSC", form.values.completed_nysc)
+  
+        
+      try {
+        const res = await fetch('https://aptbk.afexats.com/api/applications/1/apply', {
+          method: 'post',
+          headers: myHeaders,
+          body: formData
+        })
+        const data = await res.json();
+        console.log(data)
+        if(data.success === true) {
+          setOopened(true)
+        }
+      } catch(error){
+        console.log(error);
+      }
     }
+    
 
   };
 
@@ -387,6 +397,7 @@ const Preview = ({ resume, others }: props) => {
                 )
               )}
             </div>
+            <ApplicationModal oopened={oopened} setOopened={setOopened}/>
             <button
               type="submit"
               style={{
@@ -404,7 +415,6 @@ const Preview = ({ resume, others }: props) => {
             >
               Submit
             </button>
-            {/* <ApplicationModal/> */}
           </form>
         </div>
       </section>

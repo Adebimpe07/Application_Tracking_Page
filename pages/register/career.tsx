@@ -227,7 +227,26 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                       { value: "ssce", label: "SSCE" },
                     ]}
                   />
-                ) : (
+                ) : name === "graduation_grade"? (
+                  <Select
+                    label={label}
+                    key={name}
+                    placeholder={data?.placeholder}
+                    {...form.getInputProps(name)}
+                    withAsterisk={true}
+                    data={[
+                      { value: "firstclass", label: "First Class" },
+                      { value: "upper", label: "Second Class Upper" },
+                      { value: "lower", label: "Second Class Lower" },
+                      { value: "third", label: "Third Class" },
+                      { value: "pass", label: "Pass" },
+                      { value: "dis", label: "Distinction" },
+                      { value: "creditup", label: "Upper Credit" },
+                      { value: "creditlow", label: "Lower Credit" },
+                      { value: "other", label: "Others" }
+                    ]}
+                  />
+                ): (
                   <TextInput
                     key={name}
                     label={label}
