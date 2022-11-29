@@ -63,7 +63,7 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
   const textRef = useRef();
 
   return (
-    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12">
+    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12 overflow-auto">
       <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
         <div className="md:flex md:gap-[49px] md:items-center hidden">
           {registerTabs.map((item, idx) => (
@@ -177,7 +177,9 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                         key={name}
                         {...form.getInputProps(name)}
                       />
+                      
                     }
+                   
                     withAsterisk={true}
                   />
                 ) : name === "cover_letter" ? (
@@ -242,6 +244,8 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                 textRef.current.value.length < 400 && !form.validate().hasErrors
                   ? setErr(true)
                   : router.push("/register/preview");
+                // console.log({...form.values, resume_or_cv:resume, other_attachment:others
+                // })
               }}
               style={{
                 color: "#FFFFFF",

@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn
+  /usr/local/bin/node /usr/local/bin/yarn add axios
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/anaconda3/bin:/opt/anaconda3/condabin
 
 Yarn version: 
   1.22.19
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: connect ENETUNREACH 104.16.26.35:443 - Local (0.0.0.0:61717)
+  Error: connect ENETUNREACH 104.16.19.35:443 - Local (0.0.0.0:59067)
       at internalConnect (node:net:1010:16)
       at defaultTriggerAsyncIdScope (node:internal/async_hooks:464:18)
       at emitLookup (node:net:1156:9)
