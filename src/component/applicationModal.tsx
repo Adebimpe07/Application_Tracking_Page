@@ -2,25 +2,8 @@ import { Button, Modal } from "@mantine/core";
 import React, { useState } from "react";
 import Mark from "../Asset/mark.png";
 
-const ApplicationModal = () => {
-  const [oopened, setOopened] = useState(false);
+const ApplicationModal = ({oopened, setOopened}:any) => {
   return (
-    <div className="self-center">
-      <Button
-        style={{
-          color: "#FFFFFF",
-          fontSize: "18px",
-          fontWeight: "700",
-
-          background: "#A01B14",
-          borderRadius: "8px",
-          width: "100%",
-          cursor: "pointer",
-        }}
-        onClick={() => setOopened(true)}
-      >
-        Submit
-      </Button>
       <Modal
         opened={oopened}
         onClose={() => setOopened(false)}
@@ -82,7 +65,7 @@ const ApplicationModal = () => {
           </button>
         </div>
       </Modal>
-    </div>
+    
   );
 };
 export default ApplicationModal;
