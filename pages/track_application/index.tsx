@@ -1,10 +1,11 @@
 import React from "react";
 import Logo from "../../src/Asset/afex_logo.png";
+import { useStore } from "../../src/store";
 import Tracking from "./Tracking";
-import ApplicantData from "../../src/layout/ApplicantData.json";
+// import ApplicantData from "../../src/layout/ApplicantData.json";
 
 const index = () => {
-  const { name, application_id, applicationStatus } = ApplicantData;
+  const [applicant, setApplicant] = useStore.applicant();
 
   return (
     <div className="flex flex-col bg-[#E5E5E5] h-screen">
@@ -17,31 +18,31 @@ const index = () => {
             <div className="flex flex-col">
               <p className="font-semibold">
                 Applicant Name:
-                <span className="pl-2">{name}</span>
+                <span className="pl-2">{applicant?.applicant_name}</span>
               </p>
               <p className="font-semibold">
                 Applicant ID:
-                <span> {application_id}</span>
+                <span> {applicant?.application_id}</span>
               </p>
             </div>
             <p className="self-center sm:text-end flex-1">
               <span className="font-semibold">Status: </span>
 
-              {applicationStatus.map((item, idx, arr) =>
+              {applicant?.application_status?.map((item, idx, arr) =>
                 idx === arr.length - 1 ? (
                   <span
                     key={idx}
                     className={
-                      item.application_status === "Accepted"
+                      item.status === "Accepted"
                         ? "text-[green] font-semibold"
-                        : item.application_status === "Rejected"
+                        : item.status === "Rejected"
                         ? "text-[red] font-semibold"
-                        : item.application_status === "Pending"
+                        : item.status === "Pending"
                         ? "text-[orange] font-semibold"
                         : "text-[black] font-semibold"
                     }
                   >
-                    {item.application_status}
+                    {item.status}
                   </span>
                 ) : null
               )}
@@ -50,14 +51,14 @@ const index = () => {
           <p className="pt-6 w-[70%] m-auto">Recent Activity</p>
         </main>
         <div className="flex-1 bg-[#E5E5E5]">
-          {applicationStatus.map(
-            ({ activity, application_status, details, timestamp }, i) => (
+          {applicant?.application_status?.map(
+            ({ activity, status, details, timestamp }, i) => (
               <Tracking
                 key={i}
                 activity={activity}
                 details={details}
                 time={timestamp}
-                status={application_status}
+                status={status}
               />
             )
           )}
