@@ -13,8 +13,8 @@ import registerTabs from "../../src/layout/registerTabs.json";
 import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
 
 type props = {
-  setOthers: React.SetStateAction<File | null>,
-  setResume: React.SetStateAction<File | null>,
+  setOthers: (payload: File) => void,
+  setResume: (payload: File) => void,
   resume: File | null,
   others: File | null
 }
@@ -60,7 +60,7 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
     }
   };
 
-  const textRef = useRef();
+  const textRef = useRef<HTMLInputElement>(null);
 
   return (
     <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12 overflow-auto">
