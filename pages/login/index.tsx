@@ -17,24 +17,26 @@ const index = () => {
 
   const loginUser = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    var config = {
-      method: "post",
-      url: "https://aptbk.afexats.com/api/applications/track",
-      headers: {
-        "api-key":
-          "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW",
-        "request-ts": "1667549939702",
-        "hash-key":
-          "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba",
-      },
-      data: form.values,
-    };
+    if (form.values.application_id) {
+      var config = {
+        method: "post",
+        url: "https://aptbk.afexats.com/api/applications/track",
+        headers: {
+          "api-key":
+            "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW",
+          "request-ts": "1667549939702",
+          "hash-key":
+            "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba",
+        },
+        data: form.values,
+      };
 
-    axios(config).then((response) => {
-      console.log(response.data.data);
-      setApplicant(response.data.data);
-      router.push("/track_application");
-    });
+      axios(config).then((response) => {
+        console.log(response.data.data);
+        setApplicant(response.data.data);
+        router.push("/track_application");
+      });
+    } else alert("Please enter an applicant id");
     // .catch((error) => {
     //   console.log(error);
     // });
