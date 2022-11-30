@@ -80,7 +80,7 @@ const IndexPage = () => {
           }}
         >
           <div className="sm:flex sm:justify-between block">
-            <div>
+            <div className="w-full">
               <p
                 style={{
                   fontSize: "24px",
@@ -102,23 +102,23 @@ const IndexPage = () => {
               >
                 Remote - Ibadan Only - full Time
               </p>
-            </div>
-          </div>
-          <form
-            onSubmit={form.onSubmit(handleSubmit, handleError)}
-            style={{ display: "flex", flexDirection: "column", gap: "48px" }}
-          >
-            <h3
+              <h3
               style={{
                 color: "#A01B14",
                 fontSize: "18px",
                 borderBottom: "1px solid black",
                 paddingBottom: "16px",
               }}
-              className="md:pt-10"
+              className="md:mb-10 md:mt-8"
             >
               Personal Information
             </h3>
+            </div>
+          </div>
+          <form
+            onSubmit={form.onSubmit(handleSubmit, handleError)}
+            style={{ display: "flex", flexDirection: "column", gap: "48px" }}
+          >
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
               {registerPersonalInfo.map(({ label, name, placeholder }) =>
                 name === "date_of_birth" ? (
