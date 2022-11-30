@@ -1,5 +1,8 @@
 import React from "react";
 import Status from "../../src/Asset/status.png";
+import axios from "axios";
+import { useStore } from "../../src/store";
+import moment from "moment";
 
 type trackingprops = {
   activity: string;
@@ -9,6 +12,8 @@ type trackingprops = {
 };
 
 const Tracking = ({ activity, details, time }: trackingprops) => {
+  const [applicant, setApplicant] = useStore();
+
   return (
     <main className="w-[70%] m-auto items-center flex bg-[#fff] rounded-2xl  gap-8 mb-6 px-6 py-3 sm:mt-6 tracking-wide">
       <div>
@@ -19,7 +24,9 @@ const Tracking = ({ activity, details, time }: trackingprops) => {
         <p>{details}</p>
       </div>
 
-      <p className="flex-1 text-end min-w-[5.5rem] self-center">{time}</p>
+      <p className="flex-1 text-end min-w-[5.5rem] self-center">
+        {moment(time).fromNow()}
+      </p>
     </main>
   );
 };
