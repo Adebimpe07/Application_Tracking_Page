@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   <Component {...pageProps} resume={resume} setResume={setResume} others={others} setOthers={setOthers} /> :
    (
     <>
-      <div className="lg:py-[29px] lg:pl-[84px] lg:m-0 pl-2 py-8 overflow-auto sticky bg-white top-0 z-50">
+      <div className="lg:py-[29px] lg:pl-[84px] lg:m-0 pl-2 py-8 overflow-auto bg-white">
         <img src={Logo.src} className="lg:w-[125px] w-[125px] lg:m-0 m-auto" />
       </div>
 
