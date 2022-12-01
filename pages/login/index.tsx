@@ -47,7 +47,7 @@ const index = () => {
       <header>
         <img src={Logo.src} alt="logo" />
       </header>
-      <div className="bg-[#fff] flex flex-col rounded-2xl p-7 sm:p-14 sm:mt-6 mt-2 leading-5 sha shadow-xl shadow-[0px 51.8664px 76.6208px rgba(193, 194, 198, 0.19)]">
+      <div className="bg-[#fff] flex flex-col rounded-2xl p-7 sm:p-14 sm:mt-6 mt-2 leading-5 shadow-xl shadow-[0px 51.8664px 76.6208px rgba(193, 194, 198, 0.19)]">
         <h1 className="font-semibold sm:text-3xl text-center text-base">
           Track your applicaton
         </h1>
