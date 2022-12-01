@@ -1,23 +1,23 @@
 import { TextInput } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 
-
 import { DatePicker } from "@mantine/dates";
 import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
 
-import registerTabs from "../../src/layout/registerTabs.json"
-import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json"
-import registerCountry from "../../src/layout/registerCountry.json"
-
+import registerTabs from "../../src/layout/registerTabs.json";
+import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
+import registerCountry from "../../src/layout/registerCountry.json";
+import { useStore } from "../../src/store";
 
 const IndexPage = () => {
   const router = useRouter();
+  const [course, setCourse] = useStore.course();
 
   const { asPath } = useRouter();
 
-  const presentRoute =  asPath.replaceAll("/", "");
+  const presentRoute = asPath.replaceAll("/", "");
 
   const form = useRegisterFormContext();
 
@@ -51,19 +51,16 @@ const IndexPage = () => {
   };
 
   return (
-    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12 overflow-auto">
-      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
-        <div className="md:flex md:gap-[49px] md:items-center hidden">
+    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col overflow-auto">
+      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-8 flex flex-col overflow-auto">
+        <div className="md:flex md:gap-[49px] md:items-center hidden sticky top-0 overflow-auto">
           {registerTabs.map((item, idx) => (
-            <div
-              key={idx}
-              className="md:w-[420px] md:pb-[49px] md:pt-[64px] w-[180px]"
-            >
-              <div 
+            <div key={idx} className="md:w-[420px] md:pb-8 md:pt-14 w-32">
+              <div
                 className={
                   presentRoute === "register" && idx === 0
-                    ? "h-[5px] bg-[#A01B14] rounded-2xl"
-                    : "h-[5px] bg-[#D0D5DD] rounded-2xl"
+                    ? "h-1 bg-[#A01B14] rounded-2xl"
+                    : "h-1 bg-[#D0D5DD] rounded-2xl"
                 }
               ></div>
               <p className="m-0 text-base font-medium text-[#252735] lg:pt-5 pt-1">
@@ -73,10 +70,10 @@ const IndexPage = () => {
           ))}
         </div>
         <div
+          className="pt-8 px-12 py-8"
           style={{
-            background: "#FFFFFF",
+            background: "#FFF",
             borderRadius: "16px",
-            padding: "48px",
           }}
         >
           <div className="sm:flex sm:justify-between block">
@@ -89,30 +86,36 @@ const IndexPage = () => {
                   margin: 0,
                 }}
               >
-                Apply As A Back-end Developer
+                Apply For{" "}
+                {course
+                  .split("-")
+                  .map((item) => {
+                    return item.replace(item[0], item[0].toLocaleUpperCase());
+                  })
+                  .join(" ")}
               </p>
               <p
                 style={{
                   fontSize: "16px",
                   fontWeight: "400",
                   color: "#948E8E",
-                  paddingTop: "16px",
+                  paddingTop: "14px",
                   margin: 0,
                 }}
               >
                 Remote - Ibadan Only - full Time
               </p>
               <h3
-              style={{
-                color: "#A01B14",
-                fontSize: "18px",
-                borderBottom: "1px solid black",
-                paddingBottom: "16px",
-              }}
-              className="md:mb-10 md:mt-8"
-            >
-              Personal Information
-            </h3>
+                style={{
+                  color: "#A01B14",
+                  fontSize: "18px",
+                  borderBottom: "1px solid black",
+                  paddingBottom: "16px",
+                }}
+                className="md:mb-10 md:mt-4"
+              >
+                Personal Information
+              </h3>
             </div>
           </div>
           <form
@@ -139,7 +142,7 @@ const IndexPage = () => {
                       { value: "male", label: "Male" },
                     ]}
                   />
-                ) :  name === "marital_status" ? (
+                ) : name === "marital_status" ? (
                   <Select
                     label={label}
                     key={name}
@@ -150,19 +153,15 @@ const IndexPage = () => {
                       { value: "married", label: "Married" },
                     ]}
                   />
-                ) :
-                 name === "country" ? (
+                ) : name === "country" ? (
                   <Select
                     label={label}
                     key={name}
                     placeholder="Choose one"
                     {...form.getInputProps(name)}
-                    data={
-                      registerCountry
-                    }
+                    data={registerCountry}
                   />
-                ):
-                (
+                ) : (
                   <TextInput
                     withAsterisk
                     key={name}
@@ -176,7 +175,9 @@ const IndexPage = () => {
             <button
               type="submit"
               onClick={() => {
-                form.validate().hasErrors ? null : router.push("/register/career");
+                form.validate().hasErrors
+                  ? null
+                  : router.push("/register/career");
               }}
               style={{
                 color: "#FFFFFF",
