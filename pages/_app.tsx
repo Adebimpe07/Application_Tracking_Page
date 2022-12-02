@@ -18,11 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       setOthers={setOthers}
     />
   ) : (
-    <div className="flex flex-col">
-      <div className="lg:py-[20px] lg:pl-[84px] lg:m-0 pl-2 py-4 overflow-auto bg-white sticky top-0 z-10">
+    <div className="flex flex-col h-screen overflow-auto">
+      <div className="lg:py-[20px] lg:pl-[84px] lg:m-0 pl-2 py-4 bg-white">
         <img src={Logo.src} className="lg:w-[125px] w-[125px] lg:m-0 m-auto" />
       </div>
-
       <RegisterFormProvider>
         <Component
           {...pageProps}
