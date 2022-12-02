@@ -160,32 +160,17 @@ const Preview = ({ resume, others }: props) => {
         </div>
         <div
           style={{
-            background: "#FFFFFF",
+            background: "#FFF",
             borderRadius: "16px",
             padding: "48px",
           }}
         >
           <div className="sm:flex sm:justify-between block">
             <div>
-              <p
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "600",
-                  color: "#252735",
-                  margin: 0,
-                }}
-              >
+              <p className="text-2xl text-[#252735] m-0 pt-4 font-medium">
                 Preview Application
               </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "400",
-                  color: "#948E8E",
-                  paddingTop: "16px",
-                  margin: 0,
-                }}
-              >
+              <p className="text-base text-[#948e8e] m-0 pt-4 font-normal">
                 Preview the details you have entered before final submission
               </p>
             </div>
@@ -204,8 +189,8 @@ const Preview = ({ resume, others }: props) => {
             </Link>
           </div>
           <form
+            className="flex flex-col gap-[0.6rem]"
             onSubmit={form.onSubmit(handleSubmit, handleError)}
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3
               style={{

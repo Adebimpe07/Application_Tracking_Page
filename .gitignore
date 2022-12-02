@@ -1,7 +1,7 @@
-.parcel-cache
-.DS_store
+# .parcel-cache
+# .DS_store
 node_modules
 dist
-.next
-.vscode
-
+# .next
+# .vscode
+.*
