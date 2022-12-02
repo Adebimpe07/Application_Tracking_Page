@@ -11,17 +11,19 @@ import { Textarea } from "@mantine/core";
 
 import registerTabs from "../../src/layout/registerTabs.json";
 import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
+import { useStore } from "../../src/store";
 
 type props = {
-  setOthers: (payload: File) => void,
-  setResume: (payload: File) => void,
-  resume: File | null,
-  others: File | null
-}
+  setOthers: (payload: File) => void;
+  setResume: (payload: File) => void;
+  resume: File | null;
+  others: File | null;
+};
 
-const Career = ({setOthers, setResume, resume, others}: props) => {
+const Career = ({ setOthers, setResume, resume, others }: props) => {
   const router = useRouter();
   const [err, setErr] = useState(false);
+  const [course, setCourse] = useStore.course();
 
   const { asPath } = useRouter();
 
@@ -63,19 +65,16 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
   const textRef = useRef<HTMLInputElement>(null);
 
   return (
-    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col pt-12 overflow-auto">
-      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-[64px]">
-        <div className="md:flex md:gap-[49px] md:items-center hidden">
+    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col overflow-auto h-full">
+      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-4 flex flex-col h-full">
+        <div className="md:flex md:gap-[49px] md:items-center hidden overflow-auto h-42">
           {registerTabs.map((item, idx) => (
-            <div
-              key={idx}
-              className="md:w-[420px] md:pb-[49px] md:pt-[64px] w-[180px]"
-            >
+            <div key={idx} className="md:w-[26.3rem] md:pb-8 md:pt-14 w-32">
               <div
                 className={
                   presentRoute === "/career" && idx <= 1
-                    ? "h-[5px] bg-[#A01B14] rounded-2xl"
-                    : "h-[5px] bg-[#D0D5DD] rounded-2xl"
+                    ? "h-1 bg-[#A01B14] rounded-2xl"
+                    : "h-1 bg-[#D0D5DD] rounded-2xl"
                 }
               ></div>
               <p
@@ -87,54 +86,31 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
             </div>
           ))}
         </div>
-        <div
-          style={{
-            background: "#FFFFFF",
-            borderRadius: "16px",
-            padding: "48px",
-          }}
-        >
-          <div className="sm:flex sm:justify-between block">
+        <div className="px-12 py-6 bg-[#fff] mt-4 rounded-2xl h-full overflow-auto flex flex-col">
+          <div className="block h-48 overflow-auto">
             <div>
-              <p
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "600",
-                  color: "#252735",
-                  margin: 0,
-                }}
-              >
-                Apply As A Back-end Developer
+              <p className="text-2xl font-semibold text-[#252735] m-0">
+                Apply For{" "}
+                {course
+                  .split("-")
+                  .map((item) => {
+                    return item.replace(item[0], item[0].toLocaleUpperCase());
+                  })
+                  .join(" ")}
               </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "400",
-                  color: "#948E8E",
-                  paddingTop: "16px",
-                  margin: 0,
-                }}
-              >
+              <p className="text-base font-normal pt-[0.7rem] m-0 text-[#948E8E]">
                 Remote - Ibadan Only - full Time
               </p>
+              <h3 className="md:mb-2 md:mt-2 text-[#A01B14] text-lg border-b border-[#000] pb-2">
+                Career Summary
+              </h3>
             </div>
           </div>
           <form
             onSubmit={form.onSubmit(handleSubmit, handleError)}
-            style={{ display: "flex", flexDirection: "column", gap: "48px" }}
+            className="flex flex-col gap-3 h-full overflow-auto"
           >
-            <h3
-              style={{
-                color: "#A01B14",
-                fontSize: "18px",
-                borderBottom: "1px solid black",
-                paddingBottom: "16px",
-              }}
-              className="md:pt-10"
-            >
-              Career Summary
-            </h3>
-            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full h-full overflow-auto">
               {registerCareerInfo.map(({ label, name, ...data }) =>
                 name === "completed_nysc" ? (
                   <Radio.Group
@@ -177,9 +153,7 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                         key={name}
                         {...form.getInputProps(name)}
                       />
-                      
                     }
-                   
                     withAsterisk={true}
                   />
                 ) : name === "cover_letter" ? (
@@ -227,7 +201,7 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                       { value: "ssce", label: "SSCE" },
                     ]}
                   />
-                ) : name === "graduation_grade"? (
+                ) : name === "graduation_grade" ? (
                   <Select
                     label={label}
                     key={name}
@@ -243,10 +217,10 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                       { value: "dis", label: "Distinction" },
                       { value: "creditup", label: "Upper Credit" },
                       { value: "creditlow", label: "Lower Credit" },
-                      { value: "other", label: "Others" }
+                      { value: "other", label: "Others" },
                     ]}
                   />
-                ): (
+                ) : (
                   <TextInput
                     key={name}
                     label={label}
@@ -266,17 +240,7 @@ const Career = ({setOthers, setResume, resume, others}: props) => {
                 // console.log({...form.values, resume_or_cv:resume, other_attachment:others
                 // })
               }}
-              style={{
-                color: "#FFFFFF",
-                fontSize: "18px",
-                fontWeight: "700",
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                background: "#A01B14",
-                borderRadius: "8px",
-                width: "100%",
-                cursor: "pointer",
-              }}
+              className="text-[#fff] text-lg font-bold bg-[#A01B14] rounded-lg w-full cursor-pointer py-1"
             >
               Next
             </button>

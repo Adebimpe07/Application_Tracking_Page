@@ -20,7 +20,7 @@ const index = () => {
     if (form.values.application_id) {
       var config = {
         method: "post",
-        url: "https://aptbk.afexats.com/api/applications/track",
+        url: `${process.env.BASE_URL}/api/applications/track`,
         headers: {
           "api-key":
             "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW",

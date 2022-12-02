@@ -51,11 +51,11 @@ const IndexPage = () => {
   };
 
   return (
-    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col overflow-auto">
-      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-8 flex flex-col overflow-auto">
-        <div className="md:flex md:gap-[49px] md:items-center hidden sticky top-0 overflow-auto">
+    <main className="bg-[#E5E5E5] lg:flex lg:m-0 flex-col overflow-auto h-full">
+      <section className="sm:w-[80%] sm:my-0 sm:m-auto sm:pb-4 flex flex-col h-full">
+        <div className="md:flex md:gap-[49px] md:items-center hidden overflow-auto h-32">
           {registerTabs.map((item, idx) => (
-            <div key={idx} className="md:w-[420px] md:pb-8 md:pt-14 w-32">
+            <div key={idx} className="md:w-[26.3rem] md:pb-8 md:pt-14 w-32">
               <div
                 className={
                   presentRoute === "register" && idx === 0
@@ -69,23 +69,10 @@ const IndexPage = () => {
             </div>
           ))}
         </div>
-        <div
-          className="pt-8 px-12 py-8"
-          style={{
-            background: "#FFF",
-            borderRadius: "16px",
-          }}
-        >
-          <div className="sm:flex sm:justify-between block">
-            <div className="w-full">
-              <p
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "600",
-                  color: "#252735",
-                  margin: 0,
-                }}
-              >
+        <div className="px-12 py-4 bg-[#fff] mt-4 rounded-2xl h-full overflow-auto flex flex-col">
+          <div className="sm:flex sm:justify-between block h-[8rem] sm:h-[11rem] overflow-auto">
+            <div className="w-full text-2xl font-semibold m-0 text=[#252735] overflow-auto h-full">
+              <p className="text-2xl font-semibold text-[#252735] m-0">
                 Apply For{" "}
                 {course
                   .split("-")
@@ -94,35 +81,19 @@ const IndexPage = () => {
                   })
                   .join(" ")}
               </p>
-              <p
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "400",
-                  color: "#948E8E",
-                  paddingTop: "14px",
-                  margin: 0,
-                }}
-              >
+              <p className="text-base font-normal pt-[0.7rem] m-0 text-[#948E8E]">
                 Remote - Ibadan Only - full Time
               </p>
-              <h3
-                style={{
-                  color: "#A01B14",
-                  fontSize: "18px",
-                  borderBottom: "1px solid black",
-                  paddingBottom: "16px",
-                }}
-                className="md:mb-10 md:mt-4"
-              >
+              <h3 className="md:mb-2 md:mt-2 text-[#A01B14] text-lg border-b border-[#000] pb-2">
                 Personal Information
               </h3>
             </div>
           </div>
           <form
+            className="flex flex-col gap-12 h-full overflow-auto"
             onSubmit={form.onSubmit(handleSubmit, handleError)}
-            style={{ display: "flex", flexDirection: "column", gap: "48px" }}
           >
-            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-7 block w-full h-full overflow-auto">
               {registerPersonalInfo.map(({ label, name, placeholder }) =>
                 name === "date_of_birth" ? (
                   <DatePicker
@@ -179,17 +150,7 @@ const IndexPage = () => {
                   ? null
                   : router.push("/register/career");
               }}
-              style={{
-                color: "#FFFFFF",
-                fontSize: "18px",
-                fontWeight: "700",
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                background: "#A01B14",
-                borderRadius: "8px",
-                width: "100%",
-                cursor: "pointer",
-              }}
+              className="text-[#fff] text-lg font-bold bg-[#A01B14] rounded-lg w-full cursor-pointer py-1"
             >
               Next
             </button>

@@ -112,7 +112,7 @@ const Preview = ({ resume, others }: props) => {
 
       try {
         const res = await fetch(
-          "https://aptbk.afexats.com/api/applications/1/apply",
+          `${process.env.BASE_URL}/api/applications/1/apply`,
           {
             method: "post",
             headers: myHeaders,
@@ -409,17 +409,7 @@ const Preview = ({ resume, others }: props) => {
             <ApplicationModal oopened={oopened} setOopened={setOopened} />
             <button
               type="submit"
-              style={{
-                color: "#FFFFFF",
-                fontSize: "18px",
-                fontWeight: "700",
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                background: "#A01B14",
-                borderRadius: "8px",
-                width: "100%",
-                cursor: "pointer",
-              }}
+              className="text-[#fff] text-lg font-bold bg-[#A01B14] rounded-lg w-full cursor-pointer py-1"
               onClick={(e) => handleSubmitform(e)}
             >
               Submit

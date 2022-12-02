@@ -30,7 +30,7 @@
   {
     "label": "Resume or CV",
     "name": "resume_or_cv",
-    "placeholder": "choose file (.doc/.docx/.pdf)"
+    "placeholder": "choose file (.doc/.docx/.pdf). File should not be more tha 1mb"
   },
   {
     "label": "Cover Letter",
