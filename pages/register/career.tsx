@@ -94,7 +94,7 @@ const Career = ({ setOthers, setResume, resume, others }: props) => {
                 {course
                   .split("-")
                   .map((item) => {
-                    return item.replace(item[0], item[0].toLocaleUpperCase());
+                    return item.replace(item[0], item[0]?.toLocaleUpperCase());
                   })
                   .join(" ")}
               </p>
