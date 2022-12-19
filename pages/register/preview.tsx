@@ -12,6 +12,8 @@ import { IconUpload } from "@tabler/icons";
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import CryptoJS from "crypto-js";
+import sha256 from "crypto-js/sha256";
 
 import registerTabs from "../../src/layout/registerTabs.json";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
@@ -19,6 +21,7 @@ import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
 import registerCareerInfo from "../../src/layout/registerCareerInfo.json";
 import moment from "moment";
 import ApplicationModal from "../../src/component/applicationModal";
+import { useStore } from "../../src/store";
 
 type props = {
   resume: File;
@@ -35,6 +38,7 @@ const Preview = ({ resume, others }: props) => {
 
   const form = useRegisterFormContext();
   const [oopened, setOopened] = useState(false);
+  const [id] = useStore.id();
 
   const handleSubmit = (values: typeof form.values) => {
     console.log(values);
@@ -68,19 +72,30 @@ const Preview = ({ resume, others }: props) => {
   };
 
   const handleSubmitform = async (e: { preventDefault: () => void }) => {
+    var key = CryptoJS.enc.Base64.parse(
+      "HmYOKQj7ZzF8cbeswYY9uLqbfMSUS2tI6Pz45zjylOM="
+    );
+    var iv = CryptoJS.enc.Base64.parse("PL2LON7ZBLXq4a32le+FCQ==");
+    const encrypt = (element: any) => {
+      return CryptoJS.AES.encrypt(element, key, {
+        iv: iv,
+      }).toString();
+    };
     e.preventDefault();
     if (resume) {
       const formData = new FormData();
       const myHeaders = new Headers();
+      const requestTs = String(Date.now());
+      myHeaders.append("api-key", process.env.NEXT_PUBLIC_APP_API_KEY);
 
-      myHeaders.append(
-        "api-key",
-        "qsMNjvnWL4aqOATjtjLoaoaRPw2Fec0jf43J5oB02Sv7hMELvfcwnOdzS9FQHOvW"
-      );
-      myHeaders.append("request-ts", "1667549939702");
+      myHeaders.append("request-ts", requestTs);
       myHeaders.append(
         "hash-key",
-        "ffefa32cfa2df9944ce9ad0212cc80169b1f7574fe09631a46756600d33238ba"
+        sha256(
+          process.env.NEXT_PUBLIC_APP_API_KEY +
+            process.env.NEXT_PUBLIC_SECRET_KEY +
+            requestTs
+        ).toString(CryptoJS.enc.Hex)
       );
 
       formData.append("resume", resume, resume?.name);
@@ -112,7 +127,7 @@ const Preview = ({ resume, others }: props) => {
 
       try {
         const res = await fetch(
-          `${process.env.BASE_URL}/api/applications/1/apply`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/applications/${id}/apply`,
           {
             method: "post",
             headers: myHeaders,

@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../../src/Asset/afex_logo.png";
 import { useStore } from "../../src/store";
 import Tracking from "./Tracking";
-// import ApplicantData from "../../src/layout/ApplicantData.json";
-
 const index = () => {
   const [applicant, setApplicant] = useStore.applicant();
 
