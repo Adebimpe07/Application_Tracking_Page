@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [resume, setResume] = useState<File | null>(null);
   const [others, setOthers] = useState<File | null>(null);
   const { pathname } = useRouter();
-  return pathname === "/login" || pathname === "/track_application" ? (
+  return pathname === "/track_login" || pathname === "/track_application" ? (
     <Component
       {...pageProps}
       resume={resume}

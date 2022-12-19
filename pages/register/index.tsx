@@ -5,7 +5,6 @@ import { DatePicker } from "@mantine/dates";
 import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useRegisterFormContext } from "../../src/layout/RegisterFormProvider";
-
 import registerTabs from "../../src/layout/registerTabs.json";
 import registerPersonalInfo from "../../src/layout/registerPersonalInfo.json";
 import registerCountry from "../../src/layout/registerCountry.json";

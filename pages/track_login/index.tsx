@@ -3,7 +3,9 @@ import Logo from "../../src/Asset/afex_logo.png";
 import { useRouter } from "next/router";
 import { Button, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import axios from "axios";
+import sha256 from "crypto-js/sha256";
+import axios, { AxiosRequestConfig } from "axios";
+import CryptoJS from "crypto-js";
 import { useStore } from "../../src/store";
 
 const index = () => {
@@ -14,30 +16,48 @@ const index = () => {
       application_id: "",
     },
   });
-
-  const loginUser = (e: { preventDefault: () => void }) => {
+  var key = CryptoJS.enc.Base64.parse(
+    "HmYOKQj7ZzF8cbeswYY9uLqbfMSUS2tI6Pz45zjylOM="
+  );
+  var iv = CryptoJS.enc.Base64.parse("PL2LON7ZBLXq4a32le+FCQ==");
+  const encrypt = (element: any) => {
+    return CryptoJS.AES.encrypt(element, key, {
+      iv: iv,
+    }).toString();
+  };
+  const trackApplication = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const requestTs = String(Date.now());
+    var config: AxiosRequestConfig = {
+      method: "post",
+      baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+      url: `api/applications/track`,
+      headers: {
+        "api-key": process.env.NEXT_PUBLIC_APP_API_KEY,
+        "request-ts": requestTs,
+        "hash-key": sha256(
+          process.env.NEXT_PUBLIC_APP_API_KEY +
+            process.env.NEXT_PUBLIC_SECRET_KEY +
+            requestTs
+        ).toString(CryptoJS.enc.Hex),
+      },
+      data: { data: encrypt(JSON.stringify(form.values)) },
+    };
     if (form.values.application_id) {
-      var config = {
-        method: "post",
-        url: `${process.env.BASE_URL}/api/applications/track`,
-        headers: {
-          " api-key": `${process.env.NEXT_PUBLIC_APP_API_KEY}`,
-          "request-ts": `${process.env.NEXT_PUBLIC_REQUEST_TS}`,
-          "hash-key": `${process.env.NEXT_PUBLIC_HASH_KEY}`,
-        },
-        data: form.values,
-      };
-
-      axios(config).then((response) => {
-        console.log(response.data.data);
-        setApplicant(response.data.data);
-        router.push("/track_application");
-      });
+      axios(config)
+        .then(function (response) {
+          let decrypted_data = JSON.parse(
+            CryptoJS.AES.decrypt(response.data.data, key, {
+              iv: iv,
+            }).toString(CryptoJS.enc.Utf8)
+          );
+          setApplicant(decrypted_data);
+          router.push("/track_application");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     } else alert("Please enter an applicant id");
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   };
 
   return (
@@ -70,7 +90,7 @@ const index = () => {
           <Button
             type="submit"
             className="bg-[#A01B14] hover:bg-[#A01B14] rounded-lg  py-2  px-[7rem] sm:px-[14.5rem] text-[#fff] text-base"
-            onClick={(e) => loginUser(e)}
+            onClick={(e) => trackApplication(e)}
           >
             Track{" "}
           </Button>
