@@ -52,6 +52,7 @@ const index = () => {
             }).toString(CryptoJS.enc.Utf8)
           );
           setApplicant(decrypted_data);
+          localStorage.setItem("applicant", JSON.stringify(decrypted_data));
           router.push("/track_application");
         })
         .catch(function (error) {
