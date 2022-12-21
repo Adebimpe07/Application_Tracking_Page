@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../src/Asset/afex_logo.png";
 import { useStore } from "../../src/store";
 import Tracking from "./Tracking";
 const index = () => {
-  const [applicant, setApplicant] = useStore.applicant();
-
+  const [applicant, setApplicant] = useState(null);
+  useEffect(() => {
+    setApplicant(JSON.parse(localStorage.getItem("applicant")));
+  }, []);
   return (
     <div className="flex flex-col bg-[#E5E5E5] h-screen">
       <div className="py-4 bg-[#fff] pl-12">
@@ -26,24 +28,19 @@ const index = () => {
             <p className="self-center sm:text-end flex-1">
               <span className="font-semibold">Status: </span>
 
-              {applicant?.application_status?.map((item, idx, arr) =>
-                idx === arr.length - 1 ? (
-                  <span
-                    key={idx}
-                    className={
-                      item.status === "Accepted"
-                        ? "text-[green] font-semibold"
-                        : item.status === "Rejected"
-                        ? "text-[red] font-semibold"
-                        : item.status === "Pending"
-                        ? "text-[orange] font-semibold"
-                        : "text-[black] font-semibold"
-                    }
-                  >
-                    {item.status}
-                  </span>
-                ) : null
-              )}
+              <span
+                className={
+                  applicant?.application_status[0].status === "accepted"
+                    ? "text-[green] font-semibold"
+                    : applicant?.application_status[0].status === "rejected"
+                    ? "text-[red] font-semibold"
+                    : applicant?.application_status[0].status === "pending"
+                    ? "text-[orange] font-semibold"
+                    : "text-[black] font-semibold"
+                }
+              >
+                {applicant?.application_status[0].status}
+              </span>
             </p>
           </div>
           <p className="pt-6 w-[70%] m-auto">Recent Activity</p>
